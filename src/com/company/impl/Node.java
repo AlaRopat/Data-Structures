@@ -1,36 +1,36 @@
 package com.company.impl;
 
-public class Node {
+public class Node<E> {
 
-	private Object data;
-	private Node next;
-	private Node prev;
+	private E data;
+	private Node <E> next;
+	private Node <E> prev;
 
-	public Node(Object data) {
+	public Node(E data) {
 		this.data = data;
 	}
 
-	public Object getData() {
+	public E getData() {
 		return data;
 	}
 
-	public void setData(Object data) {
+	public void setData(E data) {
 		this.data = data;
 	}
 
-	public Node getNext() {
+	public Node<E> getNext() {
 		return next;
 	}
 
-	public void setNext(Node next) {
+	public void setNext(Node <E> next) {
 		this.next = next;
 	}
 
-	public Node getPrev() {
+	public Node<E> getPrev() {
 		return prev;
 	}
 
-	public void setPrev(Node prev) {
+	public void setPrev(Node <E> prev) {
 		this.prev = prev;
 	}
 }

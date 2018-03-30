@@ -1,12 +1,14 @@
 package com.company.abstr;
 
-import com.company.impl.Node;
+public interface CustomCollection<E> {
 
-public interface CustomCollection {
+	void add(E data);
 
-	void add(Object data);
+	void remove(E data);
 
-	void remove(Object data);
+	int size();
 
-	Node get(Integer index);
+	boolean isEmpty();
+
+	boolean contains(E item);
 }
