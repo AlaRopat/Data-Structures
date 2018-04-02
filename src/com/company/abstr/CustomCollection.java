@@ -11,4 +11,6 @@ public interface CustomCollection<E> {
 	boolean isEmpty();
 
 	boolean contains(E item);
+
+	void print();
 }

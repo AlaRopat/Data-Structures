@@ -16,9 +16,8 @@ public class CustomLinkedList<E> implements CustomCollection <E> {
 
 	@Override
 	public void remove(E data) {
-
+		deleteByData(data);
 	}
-
 	@Override
 	public int size() {
 		return size;
@@ -31,6 +30,14 @@ public class CustomLinkedList<E> implements CustomCollection <E> {
 
 	@Override
 	public boolean contains(E item) {
+		checkNodeExist(head);
+		Node <E> n = head;
+		while (n.getNext() != null) {
+			if (n.getData() == item) {
+				return true;
+			}
+			n = n.getNext();
+		}
 		return false;
 	}
 
@@ -65,8 +72,54 @@ public class CustomLinkedList<E> implements CustomCollection <E> {
 		size++;
 	}
 
+	public void deleteFirst() {
+		checkNodeExist(head);
+		Node <E> del = head;
+		if (del.getNext() == null) {
+			head = null;
+			tail = null;
+		} else {
+			Node <E> next = del.getNext();
+			next.setPrev(null);
+			head = next;
+		}
+		size--;
+	}
+
+	public void deleteLast() {
+		checkNodeExist(tail);
+		Node <E> n = tail;
+		if (n.getPrev() == null) {
+			tail = null;
+			head = null;
+		} else {
+			Node <E> prev = n.getPrev();
+			prev.setNext(null);
+			tail = prev;
+		}
+		size--;
+	}
+
+	private void deleteByData(E data) {
+		Node <E> n = head;
+		Node <E> del = null;
+		while (n.getNext() != null) {
+			if (n.getData() == data) {
+				del = n;
+				break;
+			}
+			n = n.getNext();
+		}
+		checkNodeExist(del);
+		Node <E> prev = del.getPrev();
+		Node <E> next = del.getNext();
+		prev.setNext(next);
+		next.setPrev(prev);
+		size--;
+	}
+
 	public void print() {
-		Node temp = head;
+		Node <E> temp = head;
 		while (temp != null) {
 			System.out.println(temp.getData());
 			temp = temp.getNext();
@@ -113,4 +166,5 @@ public class CustomLinkedList<E> implements CustomCollection <E> {
 			throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
 		}
 	}
+
 }
